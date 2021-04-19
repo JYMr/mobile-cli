@@ -2,27 +2,51 @@
   <div class="mobile-wrap" :class="wrapClass">
     <router-view />
 
-    <!--    ToolBar-->
-    <toolBar />
+    <toolBar v-show="showToolbar" :toolbar="TOOLBAR" />
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent, computed } from 'vue'
+  import { useRoute } from 'vue-router'
   import toolBar from './toolBar.vue'
+  import TOOLBAR from '@/config/toolbar'
 
   export default defineComponent({
     components: {
       toolBar
     },
-    computed: {
-      wrapClass() {
+    setup () {
+      const { position, data } = TOOLBAR
+      const pathList = data.map(item => item.path)
+      const route = useRoute()
+
+      const showToolbar = computed(() => pathList.includes(route.path))
+      const wrapClass = computed(() => {
         return [
           {
-            'is-toolBar': this.$route.meta.layoutMode === 'toolbar'
+            'is-toolbar': pathList.includes(route.path),
+            top: position === 'top'
           }
         ]
+      })
+
+      return {
+        showToolbar,
+        wrapClass,
+        position,
+        TOOLBAR
       }
     }
   })
 </script>
+<style lang="scss" scoped>
+  .is-toolbar {
+    padding-bottom: $toolbar-height + 20px;
+
+    &.top {
+      padding-bottom:0;
+      padding-top: $toolbar-height + 20px;
+    }
+  }
+</style>

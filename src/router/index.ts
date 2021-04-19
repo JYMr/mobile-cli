@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import layout from '@/layout/layout.vue'
 
 interface RouteMeta {
-  layoutMode:?string;
+  layoutMode: string | null;
 }
 
 const routes: Array<RouteRecordRaw> = [
@@ -14,9 +14,25 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/',
         name: 'Index',
-        component: () => import('@/views/Index.vue'),
+        component: () => import('@/views/home.vue'),
         meta: {
-          layoutMode: 'toolbar'
+          title: '首页'
+        }
+      },
+      {
+        path: '/mine',
+        name: 'Mine',
+        component: () => import('@/views/mine.vue'),
+        meta: {
+          title: '我的'
+        }
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/auth/login.vue'),
+        meta: {
+          title: '登录'
         }
       }
     ]

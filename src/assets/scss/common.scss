@@ -8,3 +8,25 @@ html,body,#app{
   width: 100%;
   height: 100%;
 }
+
+.flex {
+  display: flex;
+
+  .flex-1 {
+    flex: 1;
+  }
+
+  &.jb {
+    justify-content: space-between;
+  }
+  &.jc {
+    justify-content: center;
+  }
+  &.ac {
+    align-items: center;
+  }
+
+  &.wp {
+    flex-wrap: wrap;
+  }
+}
