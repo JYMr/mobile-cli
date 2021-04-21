@@ -4,5 +4,11 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-import 'lib-flexible'
-createApp(App).use(store).use(router).mount('#app')
+import '@/plugins/import-plugins'
+import { beforeInit } from '@/plugins/before-init'
+
+beforeInit().then(
+  () => {
+    createApp(App).use(store).use(router).mount('#app')
+  }
+)

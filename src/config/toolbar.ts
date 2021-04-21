@@ -26,4 +26,5 @@ const toolbar: toolBarConfig = {
     }
   ]
 }
+
 export default toolbar

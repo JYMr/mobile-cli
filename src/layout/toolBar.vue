@@ -13,23 +13,24 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
+  import { defineComponent, ref, PropType } from 'vue'
   import { useRouter } from 'vue-router'
-  import { toolBarConfig } from '@/cli-config'
+  import { baseToolBar, toolBarConfig } from '@/cli-config'
 
   export default defineComponent({
     name: 'ToolBar',
     props: {
       toolbar: {
-        type: Object as toolBarConfig
+        required: true,
+        type: Object as PropType<toolBarConfig>
       }
     },
     setup (props) {
-      const { isIcon, position, data: list, toolbar } = ref(props)
+      const { toolbar: { isIcon, position, data: list } } = ref(props).value
 
       const router = useRouter()
-      const link = (data) => {
-        router.replace(data.path)
+      const link = (data: baseToolBar) => {
+        data.path && router.replace(data.path)
       }
 
       return {

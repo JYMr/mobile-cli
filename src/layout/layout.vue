@@ -11,6 +11,7 @@
   import { useRoute } from 'vue-router'
   import toolBar from './toolBar.vue'
   import TOOLBAR from '@/config/toolbar'
+  import { ToolBarType } from '@/assets/constant/ToolBarType'
 
   export default defineComponent({
     components: {
@@ -25,7 +26,7 @@
       const wrapClass = computed(() => {
         return [
           {
-            'is-toolbar': pathList.includes(route.path),
+            'is-toolbar': route.meta.layoutMode === ToolBarType.TOOLBAR,
             top: position === 'top'
           }
         ]
@@ -40,41 +41,6 @@
     }
   })
 </script>
-<!--<script lang="ts">
-  import { defineComponent } from 'vue'
-  import toolBar from './toolBar.vue'
-  import TOOLBAR from '@/config/toolbar'
-
-  interface LayoutInterface {
-    path?: string[],
-    [key: string]: any
-  }
-
-  export default defineComponent({
-    components: {
-      toolBar
-    },
-    data () {
-      return {
-        TOOLBAR,
-        path: []
-      } as LayoutInterface
-    },
-    computed: {
-      wrapClass() {
-        console.log(this.$route)
-        return [
-          {
-            'is-toolBar': this.$route.meta.layoutMode === 'toolbar'
-          }
-        ]
-      }
-    },
-    mounted(): void {
-      this.path = TOOLBAR.data.map(item => item.path)
-    }
-  })
-</script>-->
 <style lang="scss" scoped>
   .is-toolbar {
     padding-bottom: $toolbar-height + 20px;
