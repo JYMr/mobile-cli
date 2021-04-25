@@ -23,6 +23,12 @@ const toolbar: toolBarConfig = {
       path: '/mine',
       icon: user,
       key: Symbol('TOOLBAR')
+    },
+    {
+      name: '我的',
+      path: '/mine',
+      icon: user,
+      key: Symbol('TOOLBAR')
     }
   ]
 }

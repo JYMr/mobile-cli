@@ -1,0 +1,27 @@
+@mixin flex() {
+  display: flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+}
+
+@mixin justify-content($a: center) {
+  @include prefixer(justify-content, $a);
+}
+
+@mixin align-items($a: center) {
+  @include prefixer(align-items, $a);
+}
+
+// 块级容器元素，垂直水平居中
+@mixin ct {
+  @include flex;
+  @include justify-content(center);
+  @include align-items(center); // flex-flow: row wrap; // 超出自动换行
+}
+
+// 水平垂直居中，row为单位
+@mixin col {
+  @include ct;
+  flex-direction: column;
+}

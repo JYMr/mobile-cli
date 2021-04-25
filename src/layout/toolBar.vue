@@ -1,12 +1,12 @@
 <template>
-  <div class="toolbar flex ac" :class="position">
+  <div class="toolbar" :class="prefixClass">
     <div
-      v-for="item in list"
-      :key="item.key"
-      class="toolbar-item flex-1 flex ac jc"
+      v-for="(item, key) in list"
+      :key="`toolbar-item_${key}`"
+      class="toolbar-item"
       @click="link(item)"
     >
-      <img :src="item.icon" :alt="item.name">
+      <img :src="item.icon" :alt="item.name" />
       {{item.name}}
     </div>
   </div>
@@ -33,46 +33,51 @@
         data.path && router.replace(data.path)
       }
 
+      const prefixClass = `is-${position}`
+
       return {
         isIcon,
-        position,
+        prefixClass,
         list,
         link
       }
     }
   })
 </script>
+
 <style lang="scss" scoped>
+
   .toolbar {
+    @include flex;
+    @include justify-content(center);
     width: 100%;
     height: $toolbar-height;
-    background: $blue;
     position: fixed;
     left: 0;
-    color: $white;
+    color: #333;
     text-align: center;
 
-    &.bottom {
-      bottom: 0;
-    }
-    &.top {
-      top: 0;
-    }
     &-item {
+      @include flex;
+      @include justify-content(center);
+      @include align-items(center);
+      flex:1;
       height: 100%;
-      border-right: 1px $violet solid;
-      font-size: 36px;
-      font-weight: 600;
-
-      &:last-child {
-        border-right: none;
-      }
+      font-size: 24px;
+      flex-direction: column;
 
       img {
         width: 40px;
         height: 40px;
-        margin-right: 4px;
       }
+    }
+
+    @include when(top){
+      top: 0;
+    }
+
+    @include when(bottom){
+      bottom: 0;
     }
   }
 
