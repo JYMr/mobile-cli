@@ -9,6 +9,9 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+    <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+    <% } %>
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
