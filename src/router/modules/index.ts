@@ -4,8 +4,8 @@ import { RouteRecordRaw } from 'vue-router'
 // import { DefineComponent } from "vue";
 
 interface RouteMeta {
-  title?:string;
-  layoutMode?: string | null;
+  title?: string
+  layoutMode?: string | null
 }
 
 /**
@@ -45,27 +45,24 @@ const routes: Array<RouteRecordRaw> = [
  * 创建路由
  */
 export const createRoute = (): Array<RouteRecordRaw> => {
-  const toolbarRoute:RouteRecordRaw = {
-      path: '/',
-      name: 'Home',
-      component: layout,
-      children: []
+  const toolbarRoute: RouteRecordRaw = {
+    path: '/',
+    name: 'Home',
+    component: layout,
+    children: []
+  }
+
+  const defaultRoute: Array<RouteRecordRaw> = []
+
+  routes.forEach(item => {
+    if (item.meta && item.meta.layoutMode === ToolBarType.TOOLBAR) {
+      toolbarRoute.children && toolbarRoute.children.push(item)
+    } else {
+      defaultRoute.push(item)
     }
+  })
 
-    const defaultRoute: Array<RouteRecordRaw> = []
-
-    routes.forEach(item => {
-      if (item.meta && item.meta.layoutMode === ToolBarType.TOOLBAR) {
-        toolbarRoute.children && toolbarRoute.children.push(item)
-      } else {
-        defaultRoute.push(item)
-      }
-    })
-
-  return [
-    toolbarRoute,
-    ...defaultRoute
-  ]
+  return [toolbarRoute, ...defaultRoute]
 }
 
 export default routes

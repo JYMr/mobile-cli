@@ -1,8 +1,10 @@
 <template>
-  login
+  <div class="login">
+    <button @click="$store.commit('SET_TOKEN', '1');$router.push('/')">登录</button>
+  </div>
 </template>
 
-<script>
+<script lang="ts">
   export default {
     name: 'login'
   }

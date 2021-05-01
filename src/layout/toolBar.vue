@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts">
+  import { baseToolBar, toolBarConfig } from '@/cli-custom'
   import { defineComponent, ref, PropType } from 'vue'
   import { useRouter } from 'vue-router'
-  import { baseToolBar, toolBarConfig } from '@/cli-config'
 
   export default defineComponent({
     name: 'ToolBar',

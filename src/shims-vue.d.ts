@@ -1,3 +1,6 @@
+import Vue from 'vue'
+import type lodash from 'lodash'
+
 /* eslint-disable */
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
@@ -5,16 +8,8 @@ declare module '*.vue' {
   export default component
 }
 
-
-// declare module "vue/types/vue" {
-//   interface Vue{
-//     $router: {
-//       currentRoute: {
-//         meta: any // This should be set to my new Meta interface rather than the default meta?: any type within vue-router/types/router.d.ts
-//       }
-//     }
-//   }
-// }
+declare const process: any;
+declare const _:lodash;
 
 declare module '*.svg'
 declare module '*.png'
@@ -23,5 +18,3 @@ declare module '*.jpeg'
 declare module '*.gif'
 declare module '*.bmp'
 declare module '*.tiff'
-
-declare let process: any;

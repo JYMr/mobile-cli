@@ -4,7 +4,7 @@
   <h1 @click="login">登录</h1>
 </template>
 
-<script>
+<script lang="ts">
   import { defineComponent } from 'vue'
   import { useRouter } from 'vue-router'
 

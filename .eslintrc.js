@@ -49,7 +49,9 @@ module.exports = {
     '@vue/standard',
     '@vue/typescript/recommended'
   ],
+  plugins: ['@typescript-eslint'],
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 2020
   },
   rules: {
@@ -139,6 +141,28 @@ module.exports = {
         allowEmptyLines: false
       }
     ],
-    'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }]
+    'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }],
+    '@typescript-eslint/camelcase': 0, // 目前埋点有部分字段无法更换
+    '@typescript-eslint/no-non-null-assertion': 0, // 允许非空断言运算符
+    '@typescript-eslint/member-delimiter-style': [
+      2,
+      {
+        multiline: {
+          delimiter: 'none',
+          requireLast: true
+        },
+        singleline: {
+          delimiter: 'semi',
+          requireLast: false
+        }
+      }
+    ],
+    '@typescript-eslint/no-unused-vars': [0, { args: 'none' }], // TODO 后期逐步替换
+    '@typescript-eslint/interface-name-prefix': 0,
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/no-empty-function': 0,
+    '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/no-explicit-any': 0
   }
 }
