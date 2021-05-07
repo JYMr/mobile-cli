@@ -44,6 +44,9 @@ module.exports = {
   env: {
     node: true
   },
+  globals: {
+    wx: 'readonly'
+  },
   extends: [
     'plugin:vue/vue3-essential',
     '@vue/standard',

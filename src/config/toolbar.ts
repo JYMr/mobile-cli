@@ -1,8 +1,10 @@
 /*
 * TOOLBAR
 * */
+import indexIcon from '@/assets/images/icon/icon-home.svg'
+import userIcon from '@/assets/images/icon/icon-user.svg'
 
-import { toolBarConfig } from '@/cli-custom'
+import { toolBarConfig } from '@/config/types/cli-custom'
 
 const toolbar: toolBarConfig = {
   // 是否显示icon
@@ -13,19 +15,19 @@ const toolbar: toolBarConfig = {
     {
       name: '首页',
       path: '/',
-      icon: require('@/assets/images/icon/icon-home.svg'),
+      icon: indexIcon,
       key: Symbol('TOOLBAR')
     },
     {
       name: '我的',
       path: '/mine',
-      icon: require('@/assets/images/icon/icon-user.svg'),
+      icon: userIcon,
       key: Symbol('TOOLBAR')
     },
     {
       name: '我的',
       path: '/mine',
-      icon: require('@/assets/images/icon/icon-home.svg'),
+      icon: userIcon,
       key: Symbol('TOOLBAR')
     }
   ]

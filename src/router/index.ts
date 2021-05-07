@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { createRoute } from './modules'
 import store from '@/store'
+import { wechatUtil } from '@/plugins/import-plugins'
 
 // 可过滤校验的路由
 const IGNORE_ROUTES_NAME: string[] = ['Login']
@@ -23,6 +24,13 @@ router.beforeEach((to, from, next) => {
 
   const { name, path } = to
 
+  // 判断是否是带code授权链接
+  if (path.includes('/auth')) {
+    // loading
+    // 请求TOKEN
+    store.commit('SET_TOKEN', '1')
+  }
+
   // 判断是否过滤
   if (
     (!!name && IGNORE_ROUTES_NAME.includes(String(name))) ||
@@ -36,7 +44,7 @@ router.beforeEach((to, from, next) => {
   if (store.getters.LOGIN_STATUS) {
     next()
   } else {
-    next({ name: 'Login' })
+    wechatUtil.openWechatAuth()
   }
 })
 

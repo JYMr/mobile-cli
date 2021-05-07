@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-  import { baseToolBar, toolBarConfig } from '@/cli-custom'
+  import { baseToolBar, toolBarConfig } from '@/config/types/cli-custom'
   import { defineComponent, ref, PropType } from 'vue'
   import { useRouter } from 'vue-router'
 

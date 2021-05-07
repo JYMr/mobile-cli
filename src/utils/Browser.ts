@@ -11,6 +11,7 @@ class Browser {
     }
     this.instance = this
 
+    // 转换为小写
     this.userAgent = navigator.userAgent.toLowerCase()
   }
 
@@ -31,21 +32,21 @@ class Browser {
    * 判断是否为微信浏览器
    */
   public isWeChat(): boolean {
-    return this.matchUserAgent(/MicroMessenger/i)
+    return this.matchUserAgent(/micromessenger/i)
   }
 
   /**
    * 判断是否为IOS浏览器
    */
   public isIos(): boolean {
-    return this.matchUserAgent(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+    return this.matchUserAgent(/\(i[^;]+;( U;)? cpu.+mac os x/)
   }
 
   /**
    * 判断是否为Android浏览器
    */
   public isAndroid(): boolean {
-    return this.matchUserAgent(/(Android)|(Adr)/)
+    return this.matchUserAgent(/(android)|(adr)/)
   }
 }
 

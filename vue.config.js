@@ -2,7 +2,11 @@
 const isProduct = process.env.NODE_ENV === 'production'
 const cdnConfig = {
   js: [
-    'https://cdn.bootcdn.net/ajax/libs/vue/3.0.0/vue.runtime.global.prod.js'
+    'https://cdn.bootcdn.net/ajax/libs/vue/3.0.0/vue.runtime.global.prod.js',
+    'https://cdn.bootcdn.net/ajax/libs/vant/3.0.13/vant.min.js'
+  ],
+  css: [
+    'https://cdn.bootcdn.net/ajax/libs/vant/3.0.13/index.min.css'
   ]
 }
 
@@ -13,6 +17,14 @@ module.exports = {
         arg[0].cdn = cdnConfig
         return arg
       })
+    }
+  },
+  configureWebpack: config => {
+    if (isProduct) {
+      config.externals = {
+        vant: 'vant',
+        vue: 'Vue'
+      }
     }
   },
   css: {

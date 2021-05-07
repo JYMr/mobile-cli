@@ -1,5 +1,3 @@
-import Vue from 'vue'
-import type lodash from 'lodash'
 
 /* eslint-disable */
 declare module '*.vue' {
@@ -9,7 +7,7 @@ declare module '*.vue' {
 }
 
 declare const process: any;
-declare const _:lodash;
+declare let wx: any;
 
 declare module '*.svg'
 declare module '*.png'
