@@ -10,7 +10,26 @@ const cdnConfig = {
   ]
 }
 
+/**
+ * 获取代理地址
+ * @param mode
+ * @returns {string}
+ */
+const getEnvProxyConfig = (mode = 'BASE') => {
+  return process.env[`VUE_APP_${process.env.PROXY || 'DEV'}_${mode}_HOST`]
+}
+
 module.exports = {
+  devServer: {
+    proxy: {
+      '/auth': {
+        target: getEnvProxyConfig('AUTH')
+      },
+      '/api': {
+        target: getEnvProxyConfig()
+      }
+    }
+  },
   chainWebpack: config => {
     if (isProduct) {
       config.plugin('html').tap(arg => {

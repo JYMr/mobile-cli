@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
+    "serve:prod": "cross-env PROXY=PROD vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",
+    "nprogress": "^0.2.0",
     "register-service-worker": "^1.7.1",
     "vant": "^3.0.16",
     "vue": "^3.0.0",
@@ -19,6 +22,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.168",
     "@types/node": "^14.14.41",
+    "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.22.0",
     "@vue/cli-plugin-babel": "~4.5.0",

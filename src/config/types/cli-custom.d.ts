@@ -1,12 +1,12 @@
 
-export interface baseToolBar {
+declare interface baseToolBar {
   name?: string
   path?:string
   icon?: any
   key: symbol
 }
 
-export interface toolBarConfig {
+declare interface toolBarConfig {
   isIcon: boolean
   position: string
   data: Array<baseToolBar>
