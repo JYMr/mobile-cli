@@ -69,7 +69,7 @@ export default class WechatUtil {
   /**
    * 访问微信授权链接
    */
-  openWechatAuth() {
+  openWechatAuth():void {
     const authParams = {
       appid: this.wechatConfig.appId,
       redirect_uri: this.wechatConfig.redirectUri,
@@ -99,7 +99,7 @@ export default class WechatUtil {
    })
   }
 
-  install (app: any) {
+  install (app: any):void {
     app.config.globalProperties.$wx = this.instance
   }
 }

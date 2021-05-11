@@ -2,6 +2,8 @@ import WechatUtil from '@/utils/wechat'
 
 import 'lib-flexible'
 import 'lodash'
+import 'nprogress/nprogress.css'
+
 import http from './http'
 import {
   Form,
@@ -29,8 +31,6 @@ import {
   Empty
 } from 'vant'
 
-console.log(http)
-
 export const wechatUtil = new WechatUtil({
   appId: process.env.WECHAR_APPID,
   redirectUri: window.location.host + '/auth'
@@ -40,6 +40,7 @@ export default {
   install(app:any) {
     // --- custom plugins
     app.use(wechatUtil)
+    app.config.globalProperties.http = http
 
     // --- vant
     app.use(Form)

@@ -3,11 +3,11 @@
  * @type {Object}
  */
 export const session = {
-  clear () {
+  clear ():void {
     return sessionStorage.clear()
   },
-  set (key:string, value:string) {
-    return sessionStorage.setItem(key, value)
+  set (key:string, value:string):void {
+    sessionStorage.setItem(key, value)
   },
   get (key:string, cache = true) {
     let value = sessionStorage.getItem(key)
@@ -21,10 +21,10 @@ export const session = {
     }
     return value
   },
-  remove (key:string) {
-    return sessionStorage.removeItem(key)
+  remove (key:string):void {
+    sessionStorage.removeItem(key)
   },
-  removeLike (key:string) {
+  removeLike (key:string):void {
     Object.keys(window.sessionStorage).forEach(k => {
       k.indexOf(key) > -1 && this.remove(k)
     })

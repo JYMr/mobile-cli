@@ -5,7 +5,7 @@ import { local } from '@/utils/storage'
 
 const token = store.getters.token || local.get('token')
 
-const http: any = axios.create({
+const axiosInstance: any = axios.create({
   timeout: 60000,
   withCredentials: false,
   headers: {
@@ -25,7 +25,7 @@ const http: any = axios.create({
  * @param  {[type]} (config [description]
  * @return {[type]}         [description]
  */
-http.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config: any) => {
     if (config.mode && config.url) {
       config.url = `/${config.mode}/app${config.url}`
@@ -42,7 +42,7 @@ http.interceptors.request.use(
  * @param  {[type]} (res) [description]
  * @return {[type]}       [description]
  */
-http.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (res:any) => {
     const response = res.data
     if (res.status === 200 && response?.isSuccess) {
@@ -64,4 +64,29 @@ http.interceptors.response.use(
   }
 )
 
-export default http
+/**
+ * mode装饰器
+ * @param params
+ */
+export const httpMode = (params: string) => {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log(propertyKey)
+    console.log(descriptor.value)
+  }
+}
+
+export class HttpController {
+  instance:HttpController|null = null
+  http
+
+  constructor(axiosInstance:any) {
+    if (this.instance) {
+      return this.instance
+    }
+    this.instance = this
+
+    this.http = axiosInstance
+  }
+}
+
+export default axiosInstance
